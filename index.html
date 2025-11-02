@@ -1,48 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antony Mathiyalan | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Antony Mathiyalan — Portfolio</title>
+  <meta name="description" content="Portfolio of Antony Mathiyalan — Software Developer." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Robot Runner Background -->
+  <canvas id="bg-robot" aria-hidden="true"></canvas>
 
-  <header>
-    <h1>Hi, I'm Antony 👋</h1>
-    <p>AI-Powered Software Engineer & Data Enthusiast</p>
+  <header class="header">
+    <nav class="nav container">
+      <a class="brand" href="#top">Antony</a>
+      <button id="menuToggle" class="hamburger" aria-expanded="false" aria-label="Menu">☰</button>
+      <ul id="menu" class="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="themeToggle" class="chip" aria-label="Toggle theme">🌓</button></li>
+        <li><button id="speedToggle" class="chip" aria-label="Toggle speed" title="Toggle robot speed">🏃</button></li>
+      </ul>
+    </nav>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I’m a Computer Science student passionate about building AI-powered applications and smart web systems.</p>
+  <!-- Hero -->
+  <section id="top" class="hero container">
+    <div class="hero-copy">
+      <h1>Hi, I’m <span class="accent">Antony Mathiyalan</span></h1>
+      <p class="lead">Software Developer • AI & ML Enthusiast • Full-Stack Builder</p>
+      <p>I build clean, fast, and accessible products using JavaScript, Python, and ML.</p>
+      <div class="cta">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="#contact" class="btn ghost">Contact Me</a>
+      </div>
+    </div>
   </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Python, Pandas, PyTorch</li>
-      <li>HTML, CSS, JavaScript</li>
-      <li>Node.js, MongoDB</li>
-      <li>AWS, Docker</li>
-    </ul>
+  <!-- About -->
+  <section id="about" class="section container reveal">
+    <header class="section-head">
+      <h2>About</h2>
+      <p>How I work and what I care about.</p>
+    </header>
+    <div class="cards three">
+      <article class="card">
+        <h3>What I do</h3>
+        <p>Full-stack JavaScript (React, Node.js) and Python for ML. I love performance tuning & debugging.</p>
+      </article>
+      <article class="card">
+        <h3>How I work</h3>
+        <p>Ship in small slices, write clear docs, automate tests, and iterate with feedback.</p>
+      </article>
+      <article class="card">
+        <h3>Learning</h3>
+        <p>LoRA fine-tuning and scalable cloud architecture (Docker + basic AWS).</p>
+      </article>
+    </div>
   </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <p>Coming soon: My AI Chatbot and Uni-Fee Compare App!</p>
+  <!-- Projects -->
+  <section id="projects" class="section container reveal">
+    <header class="section-head">
+      <h2>Projects</h2>
+      <p>A few of my favourite builds.</p>
+      <div class="tools">
+        <input id="search" class="input" placeholder="Search projects..." />
+        <div id="tagBar" class="tags"></div>
+      </div>
+    </header>
+    <div id="grid" class="grid"></div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:antonyking257@gmail.com">antonyking257@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/antony">github.com/Antony20070228</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/antony">linkedin.com/in/antonymathiyalan</a></p>
+  <!-- Skills -->
+  <section id="skills" class="section container reveal">
+    <header class="section-head">
+      <h2>Skills</h2>
+      <p>Tools and technologies I use a lot.</p>
+    </header>
+    <ul id="skillBars" class="skills"></ul>
   </section>
 
-  <footer>
-    <p>© 2025 Antony Mathiyalan</p>
+  <!-- Contact -->
+  <section id="contact" class="section container reveal">
+    <header class="section-head">
+      <h2>Contact</h2>
+      <p>Have a role or project in mind? Let’s connect!</p>
+    </header>
+    <form class="contact" method="POST" action="https://formsubmit.co/YOUREMAIL@example.com">
+      <input type="hidden" name="_subject" value="New message from portfolio" />
+      <div class="field"><label>Name</label><input name="name" required /></div>
+      <div class="field"><label>Email</label><input name="email" type="email" required /></div>
+      <div class="field"><label>Message</label><textarea name="message" rows="5" required></textarea></div>
+      <button class="btn primary" type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="container foot">
+      <p>© <span id="year"></span> Antony Mathiyalan</p>
+      <nav class="socials">
+        <a href="https://github.com/antony20070228" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+      </nav>
+    </div>
   </footer>
+
+  <!-- Project Modal -->
+  <dialog id="modal" class="modal" aria-label="Project details">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-body">
+      <div class="modal-media"><img id="modalImg" alt=""></div>
+      <div class="modal-content">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <ul id="modalBullets" class="bullets"></ul>
+        <div id="modalTags" class="tags"></div>
+        <div class="modal-links">
+          <a id="modalDemo" class="btn ghost" target="_blank" rel="noreferrer">Live</a>
+          <a id="modalCode" class="btn primary" target="_blank" rel="noreferrer">Code</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <script src="script.js"></script>
 </body>
